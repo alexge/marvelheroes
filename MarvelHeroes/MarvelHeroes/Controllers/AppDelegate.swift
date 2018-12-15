@@ -56,6 +56,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate: JokeViewControllerDelegate {
     func didFinishAnimations() {
-        
+        let storyboard = UIStoryboard(name: "CharacterList", bundle: .main)
+        guard let viewController = storyboard.instantiateViewController(withIdentifier: "CharacterListViewController") as? CharacterListViewController else { return }
+        let controller = CharacterListController(viewController: viewController)
+        let navigationController = UINavigationController(rootViewController: viewController)
+        window?.rootViewController?.present(navigationController, animated: false)
     }
 }

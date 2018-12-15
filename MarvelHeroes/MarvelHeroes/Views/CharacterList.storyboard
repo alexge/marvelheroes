@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Character List-->
+        <scene sceneID="ldH-s9-Xky">
+            <objects>
+                <viewController storyboardIdentifier="CharacterListViewController" id="dM5-Yh-G34" userLabel="Character List" customClass="CharacterListViewController" customModule="MarvelHeroes" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Sgh-87-XiP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="upP-W2-CwO">
+                                <rect key="frame" x="0.0" y="10" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <view key="tableFooterView" hidden="YES" contentMode="scaleToFill" id="0f1-ju-N17" userLabel="Footer">
+                                    <rect key="frame" x="0.0" y="78" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="e5n-aT-OZ8">
+                                            <rect key="frame" x="177" y="12" width="20" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </activityIndicatorView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CharacterListCell" rowHeight="50" id="aK4-Jk-TOk" customClass="CharacterListCell" customModule="MarvelHeroes" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aK4-Jk-TOk" id="ohF-3d-WWt">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hulk" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jhs-3f-kIE" userLabel="Name">
+                                                    <rect key="frame" x="24" y="14.5" width="35" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="jhs-3f-kIE" firstAttribute="centerY" secondItem="ohF-3d-WWt" secondAttribute="centerY" id="q4m-os-xxz"/>
+                                                <constraint firstItem="jhs-3f-kIE" firstAttribute="leading" secondItem="ohF-3d-WWt" secondAttribute="leading" constant="24" id="yPa-3b-kRe"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="nameLabel" destination="jhs-3f-kIE" id="6hY-EK-EjV"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="upP-W2-CwO" secondAttribute="bottom" constant="10" id="Fkq-v8-et3"/>
+                            <constraint firstItem="upP-W2-CwO" firstAttribute="leading" secondItem="kvE-Yx-hXa" secondAttribute="leading" id="IDM-4B-1j5"/>
+                            <constraint firstItem="kvE-Yx-hXa" firstAttribute="top" secondItem="upP-W2-CwO" secondAttribute="top" constant="10" id="J40-FD-eth"/>
+                            <constraint firstItem="kvE-Yx-hXa" firstAttribute="trailing" secondItem="upP-W2-CwO" secondAttribute="trailing" id="ygv-Jt-hmy"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="kvE-Yx-hXa"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="upP-W2-CwO" id="ezZ-fO-jlO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HVd-yk-pLL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="141.59999999999999" y="134.48275862068968"/>
+        </scene>
+    </scenes>
+</document>
