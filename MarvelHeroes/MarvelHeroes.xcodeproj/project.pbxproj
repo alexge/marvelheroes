@@ -15,6 +15,7 @@
 		1108AA4721C55A380019182D /* MarvelHeroesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108AA4621C55A380019182D /* MarvelHeroesTests.swift */; };
 		1108AA5221C55A380019182D /* MarvelHeroesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108AA5121C55A380019182D /* MarvelHeroesUITests.swift */; };
 		1108AA6121C55C5D0019182D /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108AA6021C55C5D0019182D /* Models.swift */; };
+		11E683E521C56588003FFBC2 /* JokeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E683E421C56588003FFBC2 /* JokeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		1108AA5121C55A380019182D /* MarvelHeroesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelHeroesUITests.swift; sourceTree = "<group>"; };
 		1108AA5321C55A380019182D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1108AA6021C55C5D0019182D /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		11E683E421C56588003FFBC2 /* JokeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			children = (
 				1108AA5F21C55C230019182D /* Models */,
 				1108AA6521C55EE20019182D /* Controllers */,
+				11E683E321C5656C003FFBC2 /* Views */,
 				1108AA6421C55ECB0019182D /* Networking */,
 				1108AA3321C55A360019182D /* ViewController.swift */,
 				1108AA3521C55A360019182D /* Main.storyboard */,
@@ -150,6 +153,14 @@
 				1108AA3121C55A360019182D /* AppDelegate.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		11E683E321C5656C003FFBC2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				11E683E421C56588003FFBC2 /* JokeViewController.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,6 +297,7 @@
 				1108AA6121C55C5D0019182D /* Models.swift in Sources */,
 				1108AA3421C55A360019182D /* ViewController.swift in Sources */,
 				1108AA3221C55A360019182D /* AppDelegate.swift in Sources */,
+				11E683E521C56588003FFBC2 /* JokeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
