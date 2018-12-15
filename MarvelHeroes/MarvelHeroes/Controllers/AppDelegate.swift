@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         characterListController = CharacterListController(viewController: viewController)
         
         requestPerformer = RequestPerformer()
-        requestPerformer?.fetchCharacters(successHandler: { [weak self] characters in
+        requestPerformer?.fetchCharacters(offset: 0, successHandler: { [weak self] characters in
             self?.characterListController?.characters = characters
             }, errorHandler: {
                 

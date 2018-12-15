@@ -17,11 +17,11 @@ class RequestPerformer {
     let publicKey = "f1a9b1c3346ee87c71f463a81ffbebfc"
     let privateKey = "b45d57cc362cc6ed4fd9f45cf2d7754d0636c332"
     
-    func fetchCharacters(successHandler: @escaping (([Character]) -> Void), errorHandler: @escaping (() -> Void)) {
+    func fetchCharacters(offset: Int, successHandler: @escaping (([Character]) -> Void), errorHandler: @escaping (() -> Void)) {
         var urlComp = URLComponents(string: baseURL + charactersPath)!
         
         let timeStamp = String(Date().timeIntervalSince1970)
-        let params = ["apikey":publicKey, "ts":timeStamp, "hash": md5Hash(timeStamp: timeStamp), "limit":"20"]
+        let params = ["apikey":publicKey, "ts":timeStamp, "hash": md5Hash(timeStamp: timeStamp), "limit":"20", "offset":"\(offset)"]
         
         var items = [URLQueryItem]()
         for (key,value) in params {

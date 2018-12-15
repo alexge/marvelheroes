@@ -10,6 +10,7 @@ import UIKit
 
 protocol CharacterListViewControllerDelegate: class {
     func didSelectCharacter(_ character: Character)
+    func didReachBottom()
 }
 
 class CharacterListViewController: UIViewController {
@@ -25,10 +26,12 @@ class CharacterListViewController: UIViewController {
     var characters = [Character]() {
         didSet {
             tableView?.reloadData()
+            tableView?.tableFooterView?.isHidden = true
         }
     }
     
     weak var delegate: CharacterListViewControllerDelegate?
+    var moreResults: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +61,10 @@ extension CharacterListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.section == 0 && indexPath.row == characters.count - 1 {
-            tableView.tableFooterView?.isHidden = false
+            if moreResults {
+                tableView.tableFooterView?.isHidden = false
+                delegate?.didReachBottom()
+            }
         }
     }
 }
