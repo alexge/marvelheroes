@@ -29,6 +29,23 @@ class CharacterListController {
     init(viewController: CharacterListViewController) {
         listViewController = viewController
         listViewController.delegate = self
+        
+        isLoading = true
+        fetchCharacters()
+    }
+    
+    func fetchCharacters() {
+        requestPerformer?.fetchCharacters(offset: offset, successHandler: { [weak self] characters in
+            if characters.count < 20 {
+                self?.moreResults = false
+            }
+            self?.isLoading = false
+            DispatchQueue.main.async {
+                self?.characters.append(contentsOf: characters)
+            }
+            }, errorHandler: {
+                
+        })
     }
 }
 
@@ -40,15 +57,6 @@ extension CharacterListController: CharacterListViewControllerDelegate {
     func didReachBottom() {
         guard !isLoading else { return }
         isLoading = true
-        requestPerformer?.fetchCharacters(offset: offset, successHandler: { [weak self] characters in
-            if characters.count < 20 {
-                self?.moreResults = false
-            }
-            DispatchQueue.main.async {
-                self?.characters.append(contentsOf: characters)
-            }
-            }, errorHandler: {
-                
-        })
+        fetchCharacters()
     }
 }

@@ -22,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let window = UIWindow()
         self.window = window
         
+        requestPerformer = RequestPerformer()
+        
         // Show joke
         let controller = JokeViewController()
         controller.delegate = self
@@ -32,13 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyboard = UIStoryboard(name: "CharacterList", bundle: .main)
         guard let viewController = storyboard.instantiateViewController(withIdentifier: "CharacterListViewController") as? CharacterListViewController else { return false }
         characterListController = CharacterListController(viewController: viewController)
-        
-        requestPerformer = RequestPerformer()
-        requestPerformer?.fetchCharacters(offset: 0, successHandler: { [weak self] characters in
-            self?.characterListController?.characters = characters
-            }, errorHandler: {
-                
-        })
         
         return true
     }
