@@ -52,7 +52,7 @@ class CharacterListController {
 
 extension CharacterListController: CharacterListViewControllerDelegate {
     func didSelectCharacter(_ character: Character) {
-        
+        listViewController.navigationController?.pushViewController(CharacterDetailViewController(character: character), animated: true)
     }
     
     func didReachBottom() {
