@@ -22,7 +22,7 @@ class CharacterListViewController: UIViewController {
         }
     }
     
-    var characters: [Character] = [Character(id: 1, name: "hulk", description: "Big, green, angry", comics: [], stories: [], events: [], series: [])] {
+    var characters = [Character]() {
         didSet {
             tableView?.reloadData()
         }

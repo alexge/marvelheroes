@@ -8,11 +8,14 @@
 
 import UIKit
 
+var requestPerformer: RequestPerformer?
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    var characterListController: CharacterListController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Setup Window
@@ -26,8 +29,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.rootViewController = controller
         window.makeKeyAndVisible()
         
-        let requestPerformer = RequestPerformer()
-        requestPerformer.fetchCharacters()
+        let storyboard = UIStoryboard(name: "CharacterList", bundle: .main)
+        guard let viewController = storyboard.instantiateViewController(withIdentifier: "CharacterListViewController") as? CharacterListViewController else { return false }
+        characterListController = CharacterListController(viewController: viewController)
+        
+        requestPerformer = RequestPerformer()
+        requestPerformer?.fetchCharacters(successHandler: { [weak self] characters in
+            self?.characterListController?.characters = characters
+            }, errorHandler: {
+                
+        })
         
         return true
     }
@@ -59,9 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate: JokeViewControllerDelegate {
     func didFinishAnimations() {
-        let storyboard = UIStoryboard(name: "CharacterList", bundle: .main)
-        guard let viewController = storyboard.instantiateViewController(withIdentifier: "CharacterListViewController") as? CharacterListViewController else { return }
-        let controller = CharacterListController(viewController: viewController)
+        guard let viewController = characterListController?.listViewController else { return }
         let navigationController = UINavigationController(rootViewController: viewController)
         window?.rootViewController?.present(navigationController, animated: false)
     }

@@ -11,6 +11,12 @@ import UIKit
 class CharacterListController {
     let listViewController: CharacterListViewController
     
+    var characters = [Character]() {
+        didSet {
+            listViewController.characters = characters
+        }
+    }
+    
     init(viewController: CharacterListViewController) {
         listViewController = viewController
         listViewController.delegate = self

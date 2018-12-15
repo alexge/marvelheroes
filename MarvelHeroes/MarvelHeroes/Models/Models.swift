@@ -16,6 +16,14 @@ struct Character {
     let stories: [Story]
     let events: [Event]
     let series: [Series]
+    
+//    init?(json: [String: Any]) {
+//        guard
+//            let id = json["id"] as? Int,
+//            let name = json["name"] as? String,
+//            let description = json["description"] as? String,
+//            let comics = 
+//    }
 }
 
 struct Comic {
