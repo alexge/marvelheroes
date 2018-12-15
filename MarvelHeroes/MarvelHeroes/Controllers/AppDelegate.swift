@@ -26,6 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.rootViewController = controller
         window.makeKeyAndVisible()
         
+        let requestPerformer = RequestPerformer()
+        requestPerformer.fetchCharacters()
+        
         return true
     }
 

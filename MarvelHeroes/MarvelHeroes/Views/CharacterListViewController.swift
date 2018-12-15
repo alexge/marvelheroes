@@ -18,7 +18,7 @@ class CharacterListViewController: UIViewController {
         didSet {
             tableView?.delegate = self
             tableView?.dataSource = self
-            tableView?.rowHeight = UITableView.automaticDimension
+            tableView?.rowHeight = 50
         }
     }
     
