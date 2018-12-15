@@ -9,6 +9,7 @@
 import UIKit
 
 class CharacterListController {
+    
     let listViewController: CharacterListViewController
     
     var isLoading: Bool = false

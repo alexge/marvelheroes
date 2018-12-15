@@ -60,19 +60,19 @@ class JokeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        UIView.animate(withDuration: 0.5, delay: 1, options: .curveLinear, animations: {
+        UIView.animate(withDuration: 0.25, delay: 0.25, options: .curveLinear, animations: {
             self.view.setNeedsLayout()
             self.jokeLabel.alpha = 1
         }) { _ in
-            UIView.animate(withDuration: 0.5, delay: 2, options: .curveLinear, animations: {
+            UIView.animate(withDuration: 0.25, delay: 1.5, options: .curveLinear, animations: {
                 self.view.setNeedsLayout()
                 self.jokeLabel.alpha = 0
             }) { _ in
-                UIView.animate(withDuration: 0.5, delay: 0, options: .curveLinear, animations: {
+                UIView.animate(withDuration: 0.25, delay: 0, options: .curveLinear, animations: {
                     self.view.setNeedsLayout()
                     self.marvelLogo.alpha = 1
                 }) { _ in
-                    UIView.animate(withDuration: 0.5, delay: 2, options: .curveLinear, animations: {
+                    UIView.animate(withDuration: 0.25, delay: 1.5, options: .curveLinear, animations: {
                         self.view.setNeedsLayout()
                         self.marvelLogo.alpha = 1
                     }) { _ in

@@ -42,6 +42,7 @@ class CharacterListViewController: UIViewController {
 extension CharacterListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.didSelectCharacter(characters[indexPath.row])
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
