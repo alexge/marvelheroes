@@ -60,27 +60,25 @@ class JokeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        UIView.animate(withDuration: 0.25, delay: 0.25, options: .curveLinear, animations: {
-            self.view.setNeedsLayout()
-            self.jokeLabel.alpha = 1
-        }) { _ in
-            UIView.animate(withDuration: 0.25, delay: 1.5, options: .curveLinear, animations: {
-                self.view.setNeedsLayout()
+        UIView.animateKeyframes(withDuration: 4, delay: 0.25, options: .calculationModeLinear, animations: {
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.125) {
+                self.jokeLabel.alpha = 1
+            }
+            
+            UIView.addKeyframe(withRelativeStartTime: 0.375, relativeDuration: 0.125) {
                 self.jokeLabel.alpha = 0
-            }) { _ in
-                UIView.animate(withDuration: 0.25, delay: 0, options: .curveLinear, animations: {
-                    self.view.setNeedsLayout()
-                    self.marvelLogo.alpha = 1
-                }) { _ in
-                    UIView.animate(withDuration: 0.25, delay: 1.5, options: .curveLinear, animations: {
-                        self.view.setNeedsLayout()
-                        self.marvelLogo.alpha = 1
-                    }) { _ in
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                            self.delegate?.didFinishAnimations()
-                        }
-                    }
-                }
+            }
+            
+            UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.125) {
+                self.marvelLogo.alpha = 1
+            }
+            
+            UIView.addKeyframe(withRelativeStartTime: 0.875, relativeDuration: 0.125) {
+                self.marvelLogo.alpha = 1
+            }
+        }) { _ in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.delegate?.didFinishAnimations()
             }
         }
     }
