@@ -113,7 +113,7 @@ extension CharacterListController: SearchViewControllerDelegate {
         guard let searchResultsVC = storyboard.instantiateViewController(withIdentifier: "CharacterListViewController") as? CharacterListViewController else { return }
         searchResultsVC.delegate = self
         searchResultsVC.moreResults = false
-        
+        searchResultsVC.title = "Search: \(search)"
         navController.pushViewController(searchResultsVC, animated: true)
         
         requestPerformer?.fetchCharacters(offset: 0, search: search, successHandler: { characters in
