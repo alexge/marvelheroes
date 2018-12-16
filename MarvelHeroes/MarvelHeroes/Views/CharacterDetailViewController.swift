@@ -105,7 +105,7 @@ class CharacterDetailViewController: UIViewController {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Back", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.red, for: .normal)
         return button
     }()
     

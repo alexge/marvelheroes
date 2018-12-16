@@ -13,7 +13,7 @@ class CharacterListController: NSObject {
     let navController: UINavigationController
     let listViewController: CharacterListViewController
 
-    let storyboard: UIStoryboard
+    let storyboard: UIStoryboard = UIStoryboard(name: "CharacterList", bundle: .main)
     
     var isLoading: Bool = false
     var offset: Int = 0
@@ -31,7 +31,6 @@ class CharacterListController: NSObject {
     
     init(navigationController: UINavigationController) {
         navController = navigationController
-        storyboard = UIStoryboard(name: "CharacterList", bundle: .main)
         guard let viewController = storyboard.instantiateViewController(withIdentifier: "CharacterListViewController") as? CharacterListViewController else {
             listViewController = CharacterListViewController()
             super.init()
