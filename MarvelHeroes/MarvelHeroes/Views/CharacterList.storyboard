@@ -20,8 +20,37 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="upP-W2-CwO">
                                 <rect key="frame" x="0.0" y="10" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="LeP-Y4-vzG" userLabel="Header">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J8V-zS-qaj" userLabel="Search Field">
+                                            <rect key="frame" x="24" y="15" width="255" height="30"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JeW-Lc-tou" userLabel="Search">
+                                            <rect key="frame" x="303" y="15" width="48" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="48" id="GgE-LW-RTu"/>
+                                            </constraints>
+                                            <state key="normal" title="Search">
+                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="leading" secondItem="J8V-zS-qaj" secondAttribute="leading" constant="-24" id="NLa-Rr-Rgo"/>
+                                        <constraint firstItem="J8V-zS-qaj" firstAttribute="centerY" secondItem="LeP-Y4-vzG" secondAttribute="centerY" id="Rn4-o1-nS9"/>
+                                        <constraint firstAttribute="trailing" secondItem="JeW-Lc-tou" secondAttribute="trailing" constant="24" id="aFD-ST-8sS"/>
+                                        <constraint firstItem="JeW-Lc-tou" firstAttribute="leading" secondItem="J8V-zS-qaj" secondAttribute="trailing" constant="24" id="m2S-HR-JzR"/>
+                                        <constraint firstItem="JeW-Lc-tou" firstAttribute="centerY" secondItem="LeP-Y4-vzG" secondAttribute="centerY" id="oyr-kM-0Rw"/>
+                                    </constraints>
+                                </view>
                                 <view key="tableFooterView" hidden="YES" contentMode="scaleToFill" id="0f1-ju-N17" userLabel="Footer">
-                                    <rect key="frame" x="0.0" y="78" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="138" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="e5n-aT-OZ8">
@@ -33,7 +62,7 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CharacterListCell" rowHeight="50" id="aK4-Jk-TOk" customClass="CharacterListCell" customModule="MarvelHeroes" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="50"/>
+                                        <rect key="frame" x="0.0" y="88" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aK4-Jk-TOk" id="ohF-3d-WWt">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
@@ -68,6 +97,8 @@
                         <viewLayoutGuide key="safeArea" id="kvE-Yx-hXa"/>
                     </view>
                     <connections>
+                        <outlet property="searchButton" destination="JeW-Lc-tou" id="stJ-eo-Cfe"/>
+                        <outlet property="searchField" destination="J8V-zS-qaj" id="n2b-6z-HTk"/>
                         <outlet property="tableView" destination="upP-W2-CwO" id="ezZ-fO-jlO"/>
                     </connections>
                 </viewController>

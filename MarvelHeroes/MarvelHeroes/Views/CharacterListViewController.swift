@@ -12,6 +12,8 @@ protocol CharacterListViewControllerDelegate: class {
     func didSelectCharacter(_ character: Character)
     func didReachBottom()
     func toggleFavorite(character: Character)
+    func didSearch(for search: String)
+    func didClearSearch()
 }
 
 class CharacterListViewController: UIViewController {
@@ -23,11 +25,23 @@ class CharacterListViewController: UIViewController {
             tableView?.rowHeight = 50
         }
     }
+    @IBOutlet weak var searchField: UITextField?
+    @IBOutlet weak var searchButton: UIButton?
+    
+    var searchLoadingIndicator: UIActivityIndicatorView = {
+        let activity = UIActivityIndicatorView(style: .gray)
+        activity.hidesWhenStopped = true
+        activity.translatesAutoresizingMaskIntoConstraints = false
+        return activity
+    }()
     
     var characters = [Character]() {
         didSet {
             tableView?.reloadData()
             tableView?.tableFooterView?.isHidden = true
+            searchLoadingIndicator.stopAnimating()
+            searchButton?.setTitle("Search", for: .normal)
+            searchButton?.isEnabled = true
         }
     }
     
@@ -37,6 +51,12 @@ class CharacterListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Heroes"
+        guard let button = searchButton else { return }
+        button.addTarget(self, action: #selector(search), for: .touchUpInside)
+        button.addSubview(searchLoadingIndicator)
+        searchLoadingIndicator.stopAnimating()
+        searchLoadingIndicator.centerXAnchor.constraint(equalTo: button.centerXAnchor).isActive = true
+        searchLoadingIndicator.centerYAnchor.constraint(equalTo: button.centerYAnchor).isActive = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,6 +64,17 @@ class CharacterListViewController: UIViewController {
         tableView?.reloadData()
     }
     
+
+    @objc private func search() {
+        searchButton?.setTitle(nil, for: .normal)
+        searchLoadingIndicator.startAnimating()
+        searchButton?.isEnabled = false
+        if searchField?.text == nil || searchField?.text == "" {
+            delegate?.didClearSearch()
+        } else {
+            delegate?.didSearch(for: searchField?.text ?? "")
+        }
+    }
 }
 
 extension CharacterListViewController: UITableViewDelegate {

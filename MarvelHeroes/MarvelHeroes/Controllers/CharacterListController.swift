@@ -47,11 +47,11 @@ class CharacterListController: NSObject {
         
         isLoading = true
         fetchCharacters()
-        configureSearch()
     }
     
     private func fetchCharacters() {
         requestPerformer?.fetchCharacters(offset: offset) { [weak self] characters in
+            self?.listViewController.title = "Heroes"
             if characters.count < 20 {
                 self?.moreResults = false
             }
@@ -60,17 +60,6 @@ class CharacterListController: NSObject {
                 self?.characters.append(contentsOf: characters)
             }
         }
-    }
-    
-    private func configureSearch() {
-        let item = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(openSearch))
-        listViewController.navigationItem.setRightBarButton(item, animated: false)
-    }
-    
-    @objc private func openSearch() {
-        guard let searchVC = storyboard.instantiateViewController(withIdentifier: "Search") as? SearchViewController else { return }
-        searchVC.delegate = self
-        navController.pushViewController(searchVC, animated: true)
     }
 }
 
@@ -103,6 +92,23 @@ extension CharacterListController: CharacterListViewControllerDelegate {
         
         favoritesDictionary.write(toFile: favoritesPath, atomically: true)
     }
+    
+    func didSearch(for search: String) {
+        offset = 0
+        requestPerformer?.fetchCharacters(offset: 0, search: search) { [weak self] characters in
+            self?.moreResults = characters.count == 20
+            self?.offset += characters.count
+            DispatchQueue.main.async {
+                self?.listViewController.title = "Search: \(search)"
+                self?.listViewController.characters = characters
+            }
+        }
+    }
+    
+    func didClearSearch() {
+        offset = 0
+        fetchCharacters()
+    }
 }
 
 extension CharacterListController: UIViewControllerTransitioningDelegate {
@@ -119,22 +125,6 @@ extension CharacterListController: UIViewControllerTransitioningDelegate {
             return CharacterAnimationController(type: .fadeOut)
         } else {
             return nil
-        }
-    }
-}
-
-extension CharacterListController: SearchViewControllerDelegate {
-    func didRequestSearch(for search: String) {
-        guard let searchResultsVC = storyboard.instantiateViewController(withIdentifier: "CharacterListViewController") as? CharacterListViewController else { return }
-        searchResultsVC.delegate = self
-        searchResultsVC.moreResults = false
-        searchResultsVC.title = "Search: \(search)"
-        navController.pushViewController(searchResultsVC, animated: true)
-        
-        requestPerformer?.fetchCharacters(offset: 0, search: search) { characters in
-            DispatchQueue.main.async {
-                searchResultsVC.characters = characters
-            }
         }
     }
 }
