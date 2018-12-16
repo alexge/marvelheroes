@@ -117,7 +117,9 @@ extension CharacterListController: SearchViewControllerDelegate {
         navController.pushViewController(searchResultsVC, animated: true)
         
         requestPerformer?.fetchCharacters(offset: 0, search: search, successHandler: { characters in
-            searchResultsVC.characters = characters
+            DispatchQueue.main.async {
+                searchResultsVC.characters = characters
+            }
         }, errorHandler: {
             
         })
