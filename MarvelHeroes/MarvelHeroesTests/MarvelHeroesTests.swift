@@ -67,13 +67,13 @@ class JSONParserTests: XCTestCase {
     
     let jsonParser = JSONParser()
     
-    let charactersJSON = [["id":"1",
-                          "name":"Hulk",
-                          "description":"Hulk... SMASH",
-                          "comics":["items":["name":"The biggest Hulk"]],
-                          "stories":["items":["name":"The saddest Hulk"]],
-                          "events":["items":["name":"Hulk RAMPAGE"]],
-                          "series":["items":["name":"Hulk stuff"]]]]
+    let charactersJSON = [["id":1,
+                           "name":"Hulk",
+                           "description":"Hulk... SMASH",
+                           "comics":["items":[["name":"The biggest Hulk"]]],
+                           "stories":["items":[["name":"The saddest Hulk"]]],
+                           "events":["items":[["name":"Hulk RAMPAGE"]]],
+                           "series":["items":[["name":"Hulk stuff"]]]]]
     
     let characters = [Character(id: 1, name:"Hulk",
                                 description:"Hulk... SMASH",
@@ -87,15 +87,24 @@ class JSONParserTests: XCTestCase {
         XCTAssertTrue(jsonParser.characterListFrom(json: charactersJSON) == characters)
     }
     
-//    var comicsJSON = [[String:Any]]()
-//    comicsJSON = ["items":["name":"The biggest Hulk"]]
-//    comicsJSON.appen = ["name":"The biggest Hulk"]
+    func testComicsParsing() {
+        let comicsJSON = [["name":"The biggest Hulk"]]
+        XCTAssertTrue(jsonParser.comicsListFrom(json: comicsJSON) == [Comic(name: "The biggest Hulk")])
+    }
     
-    var comicsJSON = [[String:Any]]()
-    comicsJSON = [["items":["name":"The biggest Hulk"]]]
+    func testStoriesParsing() {
+        let storiesJSON = [["name":"The saddest Hulk"]]
+        XCTAssertTrue(jsonParser.storiesListFrom(json: storiesJSON) == [Story(name: "The saddest Hulk")])
+    }
     
-    func testComicParsing() {
-        jsonParser.comicsListFrom(json: comicsJSON)
+    func testEventsParsing() {
+        let eventsJSON = [["name":"Hulk RAMPAGE"]]
+        XCTAssertTrue(jsonParser.eventsListFrom(json: eventsJSON) == [Event(name: "Hulk RAMPAGE")])
+    }
+    
+    func testSeriesParsing() {
+        let seriesJSON = [["name":"Hulk stuff"]]
+        XCTAssertTrue(jsonParser.seriesListFrom(json: seriesJSON) == [Series(name: "Hulk stuff")])
     }
     
 }
