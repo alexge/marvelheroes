@@ -77,7 +77,7 @@ class JokeViewController: UIViewController {
                 self.marvelLogo.alpha = 1
             }
         }) { _ in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                 self.delegate?.didFinishAnimations()
             }
         }

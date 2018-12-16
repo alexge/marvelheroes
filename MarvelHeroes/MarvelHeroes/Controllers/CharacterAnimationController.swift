@@ -39,7 +39,6 @@ class CharacterAnimationController: NSObject, UIViewControllerAnimatedTransition
             toVC.view.alpha = 0
             
             UIView.animate(withDuration: duration, animations: {
-                containerView.setNeedsLayout()
                 toVC.view.alpha = 1
             }) { _ in
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
@@ -51,13 +50,10 @@ class CharacterAnimationController: NSObject, UIViewControllerAnimatedTransition
             containerView.bringSubviewToFront(fromVC.view)
             
             UIView.animate(withDuration: duration, animations: {
-                containerView.setNeedsLayout()
                 fromVC.view.alpha = 0
             }) { _ in
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             }
         }
-        
-        
     }
 }
