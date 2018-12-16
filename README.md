@@ -11,5 +11,5 @@ Things to note:
 - I thought handling all API errors would involve a lot of extra UI, so there are no network API error handlers
 - Have never done UITests before, so thats why there are none
 - The persisting of the favorites uses a plist inside the project, so the values will persist from session to session, but if you download a new version, or build again in the simulator, they will be wiped
-- Both of the last companies that I've worked at believed that if you need to write documentation for someone to understand your code, then you need to write better code. So that's why there's no documentation here. I think both schools of thought have merit, but I'm not that familiar with documentation best practices, so haven't added any
+- Both of the last companies that I've worked at believed that if you need to write documentation for someone to understand your code, then you need to write better code. I think both schools of thought have merit, but since I haven't been writing any at work, I haven't added any here 
 
