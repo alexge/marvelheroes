@@ -19,11 +19,11 @@ class JSONParser {
                 let comicsJSON = dict["comics"] as? [String:Any],
                 let comicsArrayJSON = comicsJSON["items"] as? [[String:Any]],
                 let storiesJSON = dict["stories"] as? [String:Any],
-                let storiesArrayJSON = comicsJSON["items"] as? [[String:Any]],
+                let storiesArrayJSON = storiesJSON["items"] as? [[String:Any]],
                 let eventsJSON = dict["events"] as? [String:Any],
-                let eventsArrayJSON = comicsJSON["items"] as? [[String:Any]],
+                let eventsArrayJSON = eventsJSON["items"] as? [[String:Any]],
                 let seriesJSON = dict["series"] as? [String:Any],
-                let seriesArrayJSON = comicsJSON["items"] as? [[String:Any]] {
+                let seriesArrayJSON = seriesJSON["items"] as? [[String:Any]] {
                 
                 let comics = comicsListFrom(json: comicsArrayJSON)
                 let stories = storiesListFrom(json: storiesArrayJSON)
