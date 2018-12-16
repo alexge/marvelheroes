@@ -18,7 +18,6 @@
 		11D7BFCA21C5A404000E04A2 /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D7BFC921C5A404000E04A2 /* JSONParser.swift */; };
 		11D7BFCE21C5B834000E04A2 /* CharacterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D7BFCD21C5B834000E04A2 /* CharacterDetailViewController.swift */; };
 		11D7BFD021C5D8D8000E04A2 /* CharacterAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D7BFCF21C5D8D8000E04A2 /* CharacterAnimationController.swift */; };
-		11D7BFD221C5E5E6000E04A2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D7BFD121C5E5E6000E04A2 /* SearchViewController.swift */; };
 		11D7BFD421C60584000E04A2 /* Favorites.plist in Resources */ = {isa = PBXBuildFile; fileRef = 11D7BFD321C60584000E04A2 /* Favorites.plist */; };
 		11D7BFD621C607BE000E04A2 /* FavoritesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D7BFD521C607BE000E04A2 /* FavoritesButton.swift */; };
 		11E683E521C56588003FFBC2 /* JokeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E683E421C56588003FFBC2 /* JokeViewController.swift */; };
@@ -61,7 +60,6 @@
 		11D7BFC921C5A404000E04A2 /* JSONParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
 		11D7BFCD21C5B834000E04A2 /* CharacterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewController.swift; sourceTree = "<group>"; };
 		11D7BFCF21C5D8D8000E04A2 /* CharacterAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterAnimationController.swift; sourceTree = "<group>"; };
-		11D7BFD121C5E5E6000E04A2 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		11D7BFD321C60584000E04A2 /* Favorites.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Favorites.plist; sourceTree = "<group>"; };
 		11D7BFD521C607BE000E04A2 /* FavoritesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesButton.swift; sourceTree = "<group>"; };
 		11E683E421C56588003FFBC2 /* JokeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeViewController.swift; sourceTree = "<group>"; };
@@ -181,7 +179,6 @@
 				11E683E821C57A0A003FFBC2 /* CharacterList.storyboard */,
 				11E683EA21C57A31003FFBC2 /* CharacterListViewController.swift */,
 				11D7BFCD21C5B834000E04A2 /* CharacterDetailViewController.swift */,
-				11D7BFD121C5E5E6000E04A2 /* SearchViewController.swift */,
 				11D7BFD521C607BE000E04A2 /* FavoritesButton.swift */,
 			);
 			path = Views;
@@ -319,7 +316,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11D7BFD221C5E5E6000E04A2 /* SearchViewController.swift in Sources */,
 				1108AA6121C55C5D0019182D /* Models.swift in Sources */,
 				11E683EB21C57A31003FFBC2 /* CharacterListViewController.swift in Sources */,
 				11D7BFCA21C5A404000E04A2 /* JSONParser.swift in Sources */,
