@@ -122,7 +122,6 @@
 				11E683E321C5656C003FFBC2 /* Views */,
 				1108AA6421C55ECB0019182D /* Networking */,
 				1108AA3821C55A370019182D /* Assets.xcassets */,
-				1108AA3A21C55A370019182D /* LaunchScreen.storyboard */,
 				1108AA3D21C55A370019182D /* Info.plist */,
 				11D7BFD321C60584000E04A2 /* Favorites.plist */,
 			);
@@ -177,6 +176,7 @@
 		11E683E321C5656C003FFBC2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1108AA3A21C55A370019182D /* LaunchScreen.storyboard */,
 				11E683E421C56588003FFBC2 /* JokeViewController.swift */,
 				11E683E821C57A0A003FFBC2 /* CharacterList.storyboard */,
 				11E683EA21C57A31003FFBC2 /* CharacterListViewController.swift */,
