@@ -88,6 +88,22 @@ extension CharacterListController: CharacterListViewControllerDelegate {
         isLoading = true
         fetchCharacters()
     }
+    
+    func toggleFavorite(character: Character) {
+        guard let favoritesPath = Bundle.main.path(forResource: "Favorites", ofType: "plist"),
+            let favoritesDictionary = NSMutableDictionary(contentsOfFile: favoritesPath)
+            else {
+                return
+        }
+        
+        if character.isFavorite {
+            favoritesDictionary.removeObject(forKey: "\(character.id)")
+        } else {
+            favoritesDictionary["\(character.id)"] = character.name
+        }
+        
+        favoritesDictionary.write(toFile: favoritesPath, atomically: true)
+    }
 }
 
 extension CharacterListController: UIViewControllerTransitioningDelegate {

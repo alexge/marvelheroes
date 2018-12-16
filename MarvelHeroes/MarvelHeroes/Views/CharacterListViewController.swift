@@ -11,6 +11,7 @@ import UIKit
 protocol CharacterListViewControllerDelegate: class {
     func didSelectCharacter(_ character: Character)
     func didReachBottom()
+    func toggleFavorite(character: Character)
 }
 
 class CharacterListViewController: UIViewController {
@@ -56,7 +57,8 @@ extension CharacterListViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterListCell") else { return UITableViewCell() }
         guard let listCell = cell as? CharacterListCell else { return cell }
         
-        listCell.nameLabel?.text = characters[indexPath.row].name
+        listCell.bind(character: characters[indexPath.row], indexPath: indexPath)
+        listCell.delegate = self
         
         return listCell
     }
@@ -71,7 +73,57 @@ extension CharacterListViewController: UITableViewDataSource {
     }
 }
 
+extension CharacterListViewController: CharacterListCellDelegate {
+    func favoritesButtonTapped(character: Character, indexPath: IndexPath) {
+        delegate?.toggleFavorite(character: character)
+        tableView?.reloadRows(at: [indexPath], with: .fade)
+    }
+}
+
+protocol CharacterListCellDelegate: class {
+    func favoritesButtonTapped(character: Character, indexPath: IndexPath)
+}
 
 class CharacterListCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel?
+    
+    var favoritesButton = FavoritesButton()
+    
+    var character: Character? {
+        didSet {
+            guard let character = character else { return }
+            favoritesButton.bind(character: character)
+        }
+    }
+    var indexPath: IndexPath?
+    
+    weak var delegate: CharacterListCellDelegate?
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        commonInit()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+    }
+    
+    private func commonInit() {
+        contentView.addSubview(favoritesButton)
+        favoritesButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        favoritesButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24).isActive = true
+        favoritesButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+    }
+    
+    func bind(character: Character, indexPath: IndexPath) {
+        self.character = character
+        self.indexPath = indexPath
+        nameLabel?.text = character.name
+    }
+    
+    @objc func buttonTapped() {
+        guard let character = self.character, let indexPath = self.indexPath else { return }
+        delegate?.favoritesButtonTapped(character: character, indexPath: indexPath)
+    }
 }

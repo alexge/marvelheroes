@@ -16,6 +16,16 @@ struct Character {
     let stories: [Story]
     let events: [Event]
     let series: [Series]
+    
+    var isFavorite: Bool {
+        if let favoritesPath = Bundle.main.path(forResource: "Favorites", ofType: "plist"),
+            let favoritesDictionary = NSDictionary(contentsOfFile: favoritesPath),
+            name == favoritesDictionary["\(id)"] as? String {
+            return true
+        } else {
+            return false
+        }
+    }
 }
 
 struct Comic {
