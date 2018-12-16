@@ -161,7 +161,7 @@ class CharacterDetailViewController: UIViewController {
         containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         containerView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
         
-        favoritesButton.topAnchor.constraint(equalTo: nameLabel.topAnchor).isActive = true
+        favoritesButton.centerYAnchor.constraint(equalTo: nameLabel.centerYAnchor).isActive = true
         favoritesButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -24).isActive = true
         
         nameLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 40).isActive = true
