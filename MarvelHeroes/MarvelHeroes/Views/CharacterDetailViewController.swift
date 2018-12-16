@@ -12,6 +12,20 @@ class CharacterDetailViewController: UIViewController {
     
     var character: Character
     
+    var scrollView: UIScrollView = {
+        let sv = UIScrollView()
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        sv.isScrollEnabled = true
+        sv.isUserInteractionEnabled = true
+        return sv
+    }()
+    
+    var containerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     var nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -105,54 +119,72 @@ class CharacterDetailViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        scrollView.contentSize = view.bounds.size
+    }
+    
     private func addSubviews() {
-        view.addSubview(nameLabel)
-        view.addSubview(descriptionLabel)
-        view.addSubview(comicsLabel)
-        view.addSubview(comics)
-        view.addSubview(storiesLabel)
-        view.addSubview(stories)
-        view.addSubview(eventsLabel)
-        view.addSubview(events)
-        view.addSubview(seriesLabel)
-        view.addSubview(series)
-        view.addSubview(backButton)
+        view.addSubview(scrollView)
+        scrollView.addSubview(containerView)
+        containerView.addSubview(nameLabel)
+        containerView.addSubview(descriptionLabel)
+        containerView.addSubview(comicsLabel)
+        containerView.addSubview(comics)
+        containerView.addSubview(storiesLabel)
+        containerView.addSubview(stories)
+        containerView.addSubview(eventsLabel)
+        containerView.addSubview(events)
+        containerView.addSubview(seriesLabel)
+        containerView.addSubview(series)
+        containerView.addSubview(backButton)
     }
     
     private func constrainSubviews() {
-        nameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
-        nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24).isActive = true
+        scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        containerView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+        containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        
+        nameLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 40).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24).isActive = true
         
         descriptionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 24).isActive = true
-        descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24).isActive = true
-        descriptionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        descriptionLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24).isActive = true
+        descriptionLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
         
         comicsLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 24).isActive = true
-        comicsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24).isActive = true
+        comicsLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24).isActive = true
         comics.topAnchor.constraint(equalTo: comicsLabel.bottomAnchor, constant: 24).isActive = true
-        comics.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24).isActive = true
-        comics.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        comics.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24).isActive = true
+        comics.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
         
         storiesLabel.topAnchor.constraint(equalTo: comics.bottomAnchor, constant: 24).isActive = true
-        storiesLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24).isActive = true
+        storiesLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24).isActive = true
         stories.topAnchor.constraint(equalTo: storiesLabel.bottomAnchor, constant: 24).isActive = true
-        stories.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24).isActive = true
-        stories.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        stories.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24).isActive = true
+        stories.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
         
         eventsLabel.topAnchor.constraint(equalTo: stories.bottomAnchor, constant: 24).isActive = true
-        eventsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24).isActive = true
+        eventsLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24).isActive = true
         events.topAnchor.constraint(equalTo: eventsLabel.bottomAnchor, constant: 24).isActive = true
-        events.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24).isActive = true
-        events.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        events.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24).isActive = true
+        events.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
         
         seriesLabel.topAnchor.constraint(equalTo: events.bottomAnchor, constant: 24).isActive = true
-        seriesLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24).isActive = true
+        seriesLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24).isActive = true
         series.topAnchor.constraint(equalTo: seriesLabel.bottomAnchor, constant: 24).isActive = true
-        series.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24).isActive = true
-        series.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        series.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24).isActive = true
+        series.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
         
-        backButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -24).isActive = true
-        backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24).isActive = true
+        backButton.topAnchor.constraint(equalTo: series.bottomAnchor, constant: 48).isActive = true
+        backButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24).isActive = true
+        backButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
     }
     
     private func configureSubviews() {

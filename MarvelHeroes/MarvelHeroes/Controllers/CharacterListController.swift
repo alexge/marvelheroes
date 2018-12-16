@@ -121,6 +121,5 @@ extension CharacterListController: SearchViewControllerDelegate {
         }, errorHandler: {
             
         })
-        
     }
 }
