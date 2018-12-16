@@ -30,7 +30,7 @@ class CharacterDetailViewController: UIViewController {
         return view
     }()
     
-    var favoritesButton = FavoritesButton()
+    var favoritesButton = FavoritesButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
     
     var nameLabel: UILabel = {
         let label = UILabel()

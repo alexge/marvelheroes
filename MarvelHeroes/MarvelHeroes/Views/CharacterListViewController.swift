@@ -115,7 +115,3 @@ extension CharacterListViewController: CharacterListCellDelegate {
         tableView?.reloadRows(at: [indexPath], with: .fade)
     }
 }
-
-protocol CharacterListCellDelegate: class {
-    func favoritesButtonTapped(character: Character, indexPath: IndexPath)
-}

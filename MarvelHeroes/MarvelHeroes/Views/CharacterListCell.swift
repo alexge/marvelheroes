@@ -8,10 +8,14 @@
 
 import UIKit
 
+protocol CharacterListCellDelegate: class {
+    func favoritesButtonTapped(character: Character, indexPath: IndexPath)
+}
+
 class CharacterListCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel?
     
-    var favoritesButton = FavoritesButton()
+    var favoritesButton = FavoritesButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
     
     var character: Character? {
         didSet {
