@@ -106,48 +106,5 @@
             </objects>
             <point key="canvasLocation" x="141.59999999999999" y="134.48275862068968"/>
         </scene>
-        <!--Search-->
-        <scene sceneID="NCh-q7-ee2">
-            <objects>
-                <viewController storyboardIdentifier="Search" id="YII-NR-1nU" userLabel="Search" customClass="SearchViewController" customModule="MarvelHeroes" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="dem-Ta-wc8">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NBw-ye-ZoD" userLabel="Search">
-                                <rect key="frame" x="49" y="176" width="277" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AfR-ey-Npw" userLabel="Submit">
-                                <rect key="frame" x="279" y="257" width="48" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Search">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                            </button>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No blank searches!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgG-Xt-qXm">
-                                <rect key="frame" x="114" y="363" width="147" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="0.08606608350640399" blue="0.083213577181376785" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="d6n-ey-W2z"/>
-                    </view>
-                    <connections>
-                        <outlet property="searchTextField" destination="NBw-ye-ZoD" id="Js8-hI-kFR"/>
-                        <outlet property="submitButton" destination="AfR-ey-Npw" id="voV-Ui-Y6U"/>
-                        <outlet property="warningLabel" destination="dgG-Xt-qXm" id="An1-RL-pWc"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="898-GW-pCn" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="895.20000000000005" y="135.38230884557723"/>
-        </scene>
     </scenes>
 </document>
