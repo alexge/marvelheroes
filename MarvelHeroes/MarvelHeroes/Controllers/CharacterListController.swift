@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CharacterListController {
+class CharacterListController: NSObject {
     
     let listViewController: CharacterListViewController
     
@@ -29,6 +29,8 @@ class CharacterListController {
     
     init(viewController: CharacterListViewController) {
         listViewController = viewController
+        super.init()
+        
         listViewController.delegate = self
         
         isLoading = true
@@ -52,12 +54,32 @@ class CharacterListController {
 
 extension CharacterListController: CharacterListViewControllerDelegate {
     func didSelectCharacter(_ character: Character) {
-        listViewController.navigationController?.pushViewController(CharacterDetailViewController(character: character), animated: true)
+        let detailVC = CharacterDetailViewController(character: character)
+        detailVC.transitioningDelegate = self
+        listViewController.present(detailVC, animated: true)
     }
     
     func didReachBottom() {
         guard !isLoading else { return }
         isLoading = true
         fetchCharacters()
+    }
+}
+
+extension CharacterListController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if let _ = presented as? CharacterDetailViewController {
+            return CharacterAnimationController(type: .fadeIn)
+        } else {
+            return nil
+        }
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if let _ = dismissed as? CharacterDetailViewController {
+            return CharacterAnimationController(type: .fadeOut)
+        } else {
+            return nil
+        }
     }
 }

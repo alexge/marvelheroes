@@ -12,6 +12,12 @@ class CharacterDetailViewController: UIViewController {
     
     var character: Character
     
+    var nameLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     var descriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -75,6 +81,14 @@ class CharacterDetailViewController: UIViewController {
         return stack
     }()
     
+    var backButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Back", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        return button
+    }()
+    
     init(character: Character) {
         self.character = character
         super.init(nibName: nil, bundle: nil)
@@ -92,6 +106,7 @@ class CharacterDetailViewController: UIViewController {
     }
     
     private func addSubviews() {
+        view.addSubview(nameLabel)
         view.addSubview(descriptionLabel)
         view.addSubview(comicsLabel)
         view.addSubview(comics)
@@ -101,10 +116,14 @@ class CharacterDetailViewController: UIViewController {
         view.addSubview(events)
         view.addSubview(seriesLabel)
         view.addSubview(series)
+        view.addSubview(backButton)
     }
     
     private func constrainSubviews() {
-        descriptionLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24).isActive = true
+        
+        descriptionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 24).isActive = true
         descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24).isActive = true
         descriptionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
@@ -131,9 +150,13 @@ class CharacterDetailViewController: UIViewController {
         series.topAnchor.constraint(equalTo: seriesLabel.bottomAnchor, constant: 24).isActive = true
         series.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24).isActive = true
         series.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        backButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -24).isActive = true
+        backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24).isActive = true
     }
     
     private func configureSubviews() {
+        nameLabel.text = character.name
         descriptionLabel.text = character.description
         
         var comicCount = 0
@@ -179,6 +202,11 @@ class CharacterDetailViewController: UIViewController {
                 break
             }
         }
+        
+        backButton.addTarget(self, action: #selector(dismissSelf), for: .touchUpInside)
     }
     
+    @objc private func dismissSelf() {
+        dismiss(animated: true)
+    }
 }

@@ -17,6 +17,7 @@
 		11D7BFC821C58762000E04A2 /* RequestPerformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D7BFC721C58762000E04A2 /* RequestPerformer.swift */; };
 		11D7BFCA21C5A404000E04A2 /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D7BFC921C5A404000E04A2 /* JSONParser.swift */; };
 		11D7BFCE21C5B834000E04A2 /* CharacterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D7BFCD21C5B834000E04A2 /* CharacterDetailViewController.swift */; };
+		11D7BFD021C5D8D8000E04A2 /* CharacterAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D7BFCF21C5D8D8000E04A2 /* CharacterAnimationController.swift */; };
 		11E683E521C56588003FFBC2 /* JokeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E683E421C56588003FFBC2 /* JokeViewController.swift */; };
 		11E683E921C57A0A003FFBC2 /* CharacterList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11E683E821C57A0A003FFBC2 /* CharacterList.storyboard */; };
 		11E683EB21C57A31003FFBC2 /* CharacterListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E683EA21C57A31003FFBC2 /* CharacterListViewController.swift */; };
@@ -56,6 +57,7 @@
 		11D7BFC721C58762000E04A2 /* RequestPerformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPerformer.swift; sourceTree = "<group>"; };
 		11D7BFC921C5A404000E04A2 /* JSONParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
 		11D7BFCD21C5B834000E04A2 /* CharacterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewController.swift; sourceTree = "<group>"; };
+		11D7BFCF21C5D8D8000E04A2 /* CharacterAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterAnimationController.swift; sourceTree = "<group>"; };
 		11E683E421C56588003FFBC2 /* JokeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeViewController.swift; sourceTree = "<group>"; };
 		11E683E821C57A0A003FFBC2 /* CharacterList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CharacterList.storyboard; sourceTree = "<group>"; };
 		11E683EA21C57A31003FFBC2 /* CharacterListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 			children = (
 				1108AA3121C55A360019182D /* AppDelegate.swift */,
 				11D7BFC521C57D5D000E04A2 /* CharacterListController.swift */,
+				11D7BFCF21C5D8D8000E04A2 /* CharacterAnimationController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				11E683EB21C57A31003FFBC2 /* CharacterListViewController.swift in Sources */,
 				11D7BFCA21C5A404000E04A2 /* JSONParser.swift in Sources */,
 				11D7BFC821C58762000E04A2 /* RequestPerformer.swift in Sources */,
+				11D7BFD021C5D8D8000E04A2 /* CharacterAnimationController.swift in Sources */,
 				11D7BFC621C57D5D000E04A2 /* CharacterListController.swift in Sources */,
 				11D7BFCE21C5B834000E04A2 /* CharacterDetailViewController.swift in Sources */,
 				1108AA3221C55A360019182D /* AppDelegate.swift in Sources */,
