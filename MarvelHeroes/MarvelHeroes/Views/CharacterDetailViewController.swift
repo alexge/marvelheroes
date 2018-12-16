@@ -130,7 +130,7 @@ class CharacterDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        scrollView.contentSize = view.bounds.size
+        scrollView.contentSize = containerView.intrinsicContentSize
     }
     
     private func addSubviews() {
@@ -159,10 +159,10 @@ class CharacterDetailViewController: UIViewController {
         containerView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
         containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        containerView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
         
         favoritesButton.topAnchor.constraint(equalTo: nameLabel.topAnchor).isActive = true
         favoritesButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -24).isActive = true
-        
         
         nameLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 40).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24).isActive = true
@@ -197,7 +197,7 @@ class CharacterDetailViewController: UIViewController {
         
         backButton.topAnchor.constraint(equalTo: series.bottomAnchor, constant: 48).isActive = true
         backButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24).isActive = true
-        backButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
+        backButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -24).isActive = true
     }
     
     private func configureSubviews() {
