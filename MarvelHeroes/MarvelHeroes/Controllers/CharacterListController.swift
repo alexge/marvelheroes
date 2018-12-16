@@ -71,6 +71,7 @@ class CharacterListController: NSObject {
     
     @objc private func openSearch() {
         guard let searchVC = storyboard.instantiateViewController(withIdentifier: "Search") as? SearchViewController else { return }
+        searchVC.delegate = self
         navController.pushViewController(searchVC, animated: true)
     }
 }
@@ -109,6 +110,17 @@ extension CharacterListController: UIViewControllerTransitioningDelegate {
 
 extension CharacterListController: SearchViewControllerDelegate {
     func didRequestSearch(for search: String) {
+        guard let searchResultsVC = storyboard.instantiateViewController(withIdentifier: "CharacterListViewController") as? CharacterListViewController else { return }
+        searchResultsVC.delegate = self
+        searchResultsVC.moreResults = false
+        
+        navController.pushViewController(searchResultsVC, animated: true)
+        
+        requestPerformer?.fetchCharacters(offset: 0, search: search, successHandler: { characters in
+            searchResultsVC.characters = characters
+        }, errorHandler: {
+            
+        })
         
     }
 }
