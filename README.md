@@ -7,8 +7,9 @@ Architecture comments:
 
 
 Things to note:
+- To clear a search, just trigger an empty search. That will load the full list again
 - I thought handling all API errors would involve a lot of extra UI, so there are no network API error handlers
 - The scrollView on the CharacterDetailViewController isn't quite right... And I have no idea why
 - Have never done UITests before, so thats why there are none
-- The persisting of the favorites uses a plist inside the project, so the values will persist from session to session, but if you download a new version, they will be wiped
+- The persisting of the favorites uses a plist inside the project, so the values will persist from session to session, but if you download a new version, or build again in the simulator, they will be wiped
 - Both of the last companies that I've worked at believed that if you need to write documentation for someone to understand your code, then you need to write better code. So that's why there's no documentation here. Hopefully its simple/clear enough!
