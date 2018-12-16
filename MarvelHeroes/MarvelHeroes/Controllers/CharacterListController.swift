@@ -19,14 +19,13 @@ class CharacterListController: NSObject {
     var offset: Int = 0
     var moreResults: Bool = true {
         didSet {
-            listViewController.moreResults = false
+            listViewController.moreResults = moreResults
         }
     }
     
     var characters = [Character]() {
         didSet {
             listViewController.characters = characters
-            offset += 20
         }
     }
     
@@ -46,18 +45,26 @@ class CharacterListController: NSObject {
         listViewController.delegate = self
         
         isLoading = true
+        listViewController.title = "Heroes"
         fetchCharacters()
     }
     
-    private func fetchCharacters() {
-        requestPerformer?.fetchCharacters(offset: offset) { [weak self] characters in
-            self?.listViewController.title = "Heroes"
-            if characters.count < 20 {
-                self?.moreResults = false
-            }
+    private func fetchCharacters(search: String? = nil, pageLoad: Bool = false, completion: (() -> Void)? = nil) {
+        isLoading = true
+        if !pageLoad {
+            offset = 0
+        }
+        requestPerformer?.fetchCharacters(offset: offset, search: search) { [weak self] characters in
+            self?.moreResults = characters.count == 20
             self?.isLoading = false
             DispatchQueue.main.async {
-                self?.characters.append(contentsOf: characters)
+                self?.offset += characters.count
+                if pageLoad {
+                    self?.characters.append(contentsOf: characters)
+                } else {
+                    self?.characters = characters
+                }
+                completion?()
             }
         }
     }
@@ -73,8 +80,7 @@ extension CharacterListController: CharacterListViewControllerDelegate {
     
     func didReachBottom() {
         guard !isLoading else { return }
-        isLoading = true
-        fetchCharacters()
+        fetchCharacters(pageLoad: true)
     }
     
     func toggleFavorite(character: Character) {
@@ -94,20 +100,15 @@ extension CharacterListController: CharacterListViewControllerDelegate {
     }
     
     func didSearch(for search: String) {
-        offset = 0
-        requestPerformer?.fetchCharacters(offset: 0, search: search) { [weak self] characters in
-            self?.moreResults = characters.count == 20
-            self?.offset += characters.count
-            DispatchQueue.main.async {
-                self?.listViewController.title = "Search: \(search)"
-                self?.listViewController.characters = characters
-            }
+        fetchCharacters(search: search) { [weak self] in
+            self?.listViewController.title = "Search: \(search)"
         }
     }
     
     func didClearSearch() {
-        offset = 0
-        fetchCharacters()
+        fetchCharacters() { [weak self] in
+            self?.listViewController.title = "Heroes"
+        }
     }
 }
 
