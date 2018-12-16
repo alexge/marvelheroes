@@ -26,7 +26,7 @@ class CharacterListController: NSObject {
     var characters = [Character]() {
         didSet {
             listViewController.characters = characters
-            offset += characters.count
+            offset += 20
         }
     }
     
