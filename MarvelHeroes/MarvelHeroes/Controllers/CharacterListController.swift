@@ -70,8 +70,8 @@ class CharacterListController: NSObject {
     }
     
     @objc private func openSearch() {
-//        let storyboard =
-//        listViewController.navigationController?.pushViewController(<#T##viewController: UIViewController##UIViewController#>, animated: <#T##Bool#>)
+        guard let searchVC = storyboard.instantiateViewController(withIdentifier: "Search") as? SearchViewController else { return }
+        navController.pushViewController(searchVC, animated: true)
     }
 }
 
