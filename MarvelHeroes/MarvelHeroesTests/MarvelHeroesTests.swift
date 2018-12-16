@@ -61,5 +61,41 @@ class NetworkTest: XCTestCase {
         XCTAssertTrue(hash == "ffd275c5130566a2916217b101f26150")
     }
     
+}
+
+class JSONParserTests: XCTestCase {
+    
+    let jsonParser = JSONParser()
+    
+    let charactersJSON = [["id":"1",
+                          "name":"Hulk",
+                          "description":"Hulk... SMASH",
+                          "comics":["items":["name":"The biggest Hulk"]],
+                          "stories":["items":["name":"The saddest Hulk"]],
+                          "events":["items":["name":"Hulk RAMPAGE"]],
+                          "series":["items":["name":"Hulk stuff"]]]]
+    
+    let characters = [Character(id: 1, name:"Hulk",
+                                description:"Hulk... SMASH",
+                                comics:[Comic(name:"The biggest Hulk")],
+                                stories:[Story(name:"The saddest Hulk")],
+                                events:[Event(name:"Hulk RAMPAGE")],
+                                series:[Series(name:"Hulk stuff")])]
+    
+    func testCharacterParsing() {
+        print(jsonParser.characterListFrom(json: charactersJSON))
+        XCTAssertTrue(jsonParser.characterListFrom(json: charactersJSON) == characters)
+    }
+    
+//    var comicsJSON = [[String:Any]]()
+//    comicsJSON = ["items":["name":"The biggest Hulk"]]
+//    comicsJSON.appen = ["name":"The biggest Hulk"]
+    
+    var comicsJSON = [[String:Any]]()
+    comicsJSON = [["items":["name":"The biggest Hulk"]]]
+    
+    func testComicParsing() {
+        jsonParser.comicsListFrom(json: comicsJSON)
+    }
     
 }

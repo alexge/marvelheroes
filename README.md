@@ -13,3 +13,4 @@ Things to note:
 - Have never done UITests before, so thats why there are none
 - The persisting of the favorites uses a plist inside the project, so the values will persist from session to session, but if you download a new version, or build again in the simulator, they will be wiped
 - Both of the last companies that I've worked at believed that if you need to write documentation for someone to understand your code, then you need to write better code. So that's why there's no documentation here. Hopefully its simple/clear enough!
+- There is a constraints crash happening with the favorites UI button. Couldn't figure out why

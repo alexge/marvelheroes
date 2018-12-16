@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Character {
+struct Character: Equatable {
     let id: Int
     let name: String
     let description: String
@@ -28,18 +28,18 @@ struct Character {
     }
 }
 
-struct Comic {
+struct Comic: Equatable {
     let name: String
 }
 
-struct Story {
+struct Story: Equatable {
     let name: String
 }
 
-struct Event {
+struct Event: Equatable {
     let name: String
 }
 
-struct Series {
+struct Series: Equatable {
     let name: String
 }
