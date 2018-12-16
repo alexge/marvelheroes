@@ -15,7 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    var characterListController: CharacterListController?
+    var listController: CharacterListController?
+    var navigationController = UINavigationController()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Setup Window
@@ -30,10 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window.rootViewController = controller
         window.makeKeyAndVisible()
-        
-        let storyboard = UIStoryboard(name: "CharacterList", bundle: .main)
-        guard let viewController = storyboard.instantiateViewController(withIdentifier: "CharacterListViewController") as? CharacterListViewController else { return false }
-        characterListController = CharacterListController(viewController: viewController)
+
+        listController = CharacterListController(navigationController: navigationController)
         
         return true
     }
@@ -65,8 +64,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate: JokeViewControllerDelegate {
     func didFinishAnimations() {
-        guard let viewController = characterListController?.listViewController else { return }
-        let navigationController = UINavigationController(rootViewController: viewController)
         window?.rootViewController?.present(navigationController, animated: false)
     }
 }
