@@ -17,11 +17,11 @@ class RequestPerformer {
     let publicKey = "f1a9b1c3346ee87c71f463a81ffbebfc"
     let privateKey = "b45d57cc362cc6ed4fd9f45cf2d7754d0636c332"
     
-    func fetchCharacters(offset: Int, search: String? = nil, successHandler: @escaping (([Character]) -> Void), errorHandler: @escaping (() -> Void)) {
+    func fetchCharacters(offset: Int, search: String? = nil, successHandler: @escaping (([Character]) -> Void)) {
         var urlComp = URLComponents(string: baseURL + charactersPath)!
         
         let timeStamp = String(Date().timeIntervalSince1970)
-        var params = ["apikey":publicKey, "ts":timeStamp, "hash": md5Hash(timeStamp: timeStamp), "limit":"20", "offset":"\(offset)"]
+        var params = ["apikey":publicKey, "ts":timeStamp, "hash": md5Hash(timeStamp: timeStamp, privateKey: privateKey, publicKey: publicKey), "limit":"20", "offset":"\(offset)"]
         
         if let searchTerm = search {
             params["name"] = searchTerm
@@ -38,20 +38,19 @@ class RequestPerformer {
         urlRequest.httpMethod = "GET"
         
         let task = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
-            guard let data = data, error == nil else { errorHandler(); return }
+            guard let data = data, error == nil else { return }
             
             var serializedJSONResponse: Any
             do {
                 serializedJSONResponse = try JSONSerialization.jsonObject(with: data, options: [])
             } catch {
-                errorHandler()
                 return
             }
             
             guard let serializedJSONArray = serializedJSONResponse as? [String:Any],
                 let dataJSON = serializedJSONArray["data"] as? [String:Any],
                 let characterJSON = dataJSON["results"] as? [[String:Any]]
-                else { errorHandler(); return }
+                else { return }
             
             let jsonParser = JSONParser()
             let characterList = jsonParser.characterListFrom(json: characterJSON)
@@ -61,7 +60,7 @@ class RequestPerformer {
         task.resume()
     }
     
-    func md5Hash(timeStamp: String) -> String {
+    func md5Hash(timeStamp: String, privateKey: String, publicKey: String) -> String {
         let string = timeStamp + privateKey + publicKey
         
         let messageData = string.data(using:.utf8)!

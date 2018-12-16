@@ -51,7 +51,7 @@ class CharacterListController: NSObject {
     }
     
     private func fetchCharacters() {
-        requestPerformer?.fetchCharacters(offset: offset, successHandler: { [weak self] characters in
+        requestPerformer?.fetchCharacters(offset: offset) { [weak self] characters in
             if characters.count < 20 {
                 self?.moreResults = false
             }
@@ -59,9 +59,7 @@ class CharacterListController: NSObject {
             DispatchQueue.main.async {
                 self?.characters.append(contentsOf: characters)
             }
-            }, errorHandler: {
-                
-        })
+        }
     }
     
     private func configureSearch() {
@@ -133,13 +131,11 @@ extension CharacterListController: SearchViewControllerDelegate {
         searchResultsVC.title = "Search: \(search)"
         navController.pushViewController(searchResultsVC, animated: true)
         
-        requestPerformer?.fetchCharacters(offset: 0, search: search, successHandler: { characters in
+        requestPerformer?.fetchCharacters(offset: 0, search: search) { characters in
             DispatchQueue.main.async {
                 searchResultsVC.characters = characters
             }
-        }, errorHandler: {
-            
-        })
+        }
     }
 }
 
