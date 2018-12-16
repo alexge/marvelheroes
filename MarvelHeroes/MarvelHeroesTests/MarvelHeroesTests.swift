@@ -9,26 +9,57 @@
 import XCTest
 @testable import MarvelHeroes
 
-class MarvelHeroesTests: XCTestCase {
+class ModelTests: XCTestCase {
+    
+    let character = Character(id: 1, name: "ALEX", description: "the greatest", comics: [], stories: [], events: [], series: [])
+    let character2 = Character(id: 2, name: "Brian", description: "the smallest", comics: [], stories: [], events: [], series: [])
 
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        guard let favoritesPath = Bundle.main.path(forResource: "Favorites", ofType: "plist"),
+            let favoritesDictionary = NSMutableDictionary(contentsOfFile: favoritesPath)
+            else {
+                return
+        }
+        favoritesDictionary["1"] = "ALEX"
+        
+        favoritesDictionary.write(toFile: favoritesPath, atomically: true)
     }
 
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+        guard let favoritesPath = Bundle.main.path(forResource: "Favorites", ofType: "plist"),
+            let favoritesDictionary = NSMutableDictionary(contentsOfFile: favoritesPath)
+            else {
+                return
         }
+        favoritesDictionary.removeObject(forKey: "1")
+        favoritesDictionary.write(toFile: favoritesPath, atomically: true)
     }
 
+    func testPlistPathExists() {
+        XCTAssertNotNil(Bundle.main.path(forResource: "Favorites", ofType: "plist"))
+    }
+    
+    func testPlistDictionaryExists() {
+        let favoritesPath = Bundle.main.path(forResource: "Favorites", ofType: "plist")!
+        XCTAssertNotNil(NSMutableDictionary(contentsOfFile: favoritesPath))
+    }
+    
+    func testCharacterIsFavorite() {
+        XCTAssertTrue(character.isFavorite)
+    }
+    
+    func testCharacterIsNotFavorite() {
+        XCTAssertFalse(character2.isFavorite)
+    }
+
+}
+
+class NetworkTest: XCTestCase {
+    
+    func testMD5Hash() {
+        let hash = requestPerformer?.md5Hash(timeStamp: "1", privateKey: "abcd", publicKey: "1234")
+        XCTAssertTrue(hash == "ffd275c5130566a2916217b101f26150")
+    }
+    
+    
 }
