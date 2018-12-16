@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol CharacterDetailViewControllerDelegate: class {
+    func favoriteButtonTapped(character: Character)
+}
+
 class CharacterDetailViewController: UIViewController {
     
     var character: Character
@@ -25,6 +29,8 @@ class CharacterDetailViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    
+    var favoritesButton = FavoritesButton()
     
     var nameLabel: UILabel = {
         let label = UILabel()
@@ -103,6 +109,8 @@ class CharacterDetailViewController: UIViewController {
         return button
     }()
     
+    weak var delegate: CharacterDetailViewControllerDelegate?
+    
     init(character: Character) {
         self.character = character
         super.init(nibName: nil, bundle: nil)
@@ -128,6 +136,7 @@ class CharacterDetailViewController: UIViewController {
     private func addSubviews() {
         view.addSubview(scrollView)
         scrollView.addSubview(containerView)
+        containerView.addSubview(favoritesButton)
         containerView.addSubview(nameLabel)
         containerView.addSubview(descriptionLabel)
         containerView.addSubview(comicsLabel)
@@ -150,6 +159,10 @@ class CharacterDetailViewController: UIViewController {
         containerView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
         containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        
+        favoritesButton.topAnchor.constraint(equalTo: nameLabel.topAnchor).isActive = true
+        favoritesButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -24).isActive = true
+        
         
         nameLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 40).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24).isActive = true
@@ -188,6 +201,9 @@ class CharacterDetailViewController: UIViewController {
     }
     
     private func configureSubviews() {
+        favoritesButton.bind(character: character)
+        favoritesButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        
         nameLabel.text = character.name
         descriptionLabel.text = character.description
         
@@ -240,5 +256,10 @@ class CharacterDetailViewController: UIViewController {
     
     @objc private func dismissSelf() {
         dismiss(animated: true)
+    }
+    
+    @objc private func buttonTapped() {
+        delegate?.favoriteButtonTapped(character: character)
+        favoritesButton.refresh()
     }
 }

@@ -38,6 +38,15 @@ class FavoritesButton: UIButton {
             setImage(UIImage(named: "empty_heart"), for: .normal)
         }
     }
+    
+    func refresh() {
+        guard let character = character else { return }
+        if character.isFavorite {
+            setImage(UIImage(named: "filled_heart"), for: .normal)
+        } else {
+            setImage(UIImage(named: "empty_heart"), for: .normal)
+        }
+    }
 }
 
 

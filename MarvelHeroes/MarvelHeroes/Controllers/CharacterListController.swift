@@ -80,6 +80,7 @@ extension CharacterListController: CharacterListViewControllerDelegate {
     func didSelectCharacter(_ character: Character) {
         let detailVC = CharacterDetailViewController(character: character)
         detailVC.transitioningDelegate = self
+        detailVC.delegate = self
         listViewController.present(detailVC, animated: true)
     }
     
@@ -139,5 +140,11 @@ extension CharacterListController: SearchViewControllerDelegate {
         }, errorHandler: {
             
         })
+    }
+}
+
+extension CharacterListController: CharacterDetailViewControllerDelegate {
+    func favoriteButtonTapped(character: Character) {
+        toggleFavorite(character: character)
     }
 }

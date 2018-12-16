@@ -39,6 +39,11 @@ class CharacterListViewController: UIViewController {
         title = "Heroes"
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView?.reloadData()
+    }
+    
 }
 
 extension CharacterListViewController: UITableViewDelegate {
