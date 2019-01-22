@@ -129,7 +129,6 @@ class CharacterDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         scrollView.contentSize = containerView.intrinsicContentSize
     }
     
@@ -151,6 +150,8 @@ class CharacterDetailViewController: UIViewController {
     }
     
     private func constrainSubviews() {
+        let interitemSpacing: CGFloat = 24
+        
         scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
@@ -162,42 +163,42 @@ class CharacterDetailViewController: UIViewController {
         containerView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
         
         favoritesButton.centerYAnchor.constraint(equalTo: nameLabel.centerYAnchor).isActive = true
-        favoritesButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -24).isActive = true
+        favoritesButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: (-1)*interitemSpacing).isActive = true
         
         nameLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 40).isActive = true
-        nameLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: interitemSpacing).isActive = true
         
-        descriptionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 24).isActive = true
-        descriptionLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24).isActive = true
+        descriptionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: interitemSpacing).isActive = true
+        descriptionLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: interitemSpacing).isActive = true
         descriptionLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
         
-        comicsLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 24).isActive = true
-        comicsLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24).isActive = true
-        comics.topAnchor.constraint(equalTo: comicsLabel.bottomAnchor, constant: 24).isActive = true
-        comics.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24).isActive = true
+        comicsLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: interitemSpacing).isActive = true
+        comicsLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: interitemSpacing).isActive = true
+        comics.topAnchor.constraint(equalTo: comicsLabel.bottomAnchor, constant: interitemSpacing).isActive = true
+        comics.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: interitemSpacing).isActive = true
         comics.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
         
-        storiesLabel.topAnchor.constraint(equalTo: comics.bottomAnchor, constant: 24).isActive = true
-        storiesLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24).isActive = true
-        stories.topAnchor.constraint(equalTo: storiesLabel.bottomAnchor, constant: 24).isActive = true
-        stories.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24).isActive = true
+        storiesLabel.topAnchor.constraint(equalTo: comics.bottomAnchor, constant: interitemSpacing).isActive = true
+        storiesLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: interitemSpacing).isActive = true
+        stories.topAnchor.constraint(equalTo: storiesLabel.bottomAnchor, constant: interitemSpacing).isActive = true
+        stories.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: interitemSpacing).isActive = true
         stories.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
         
-        eventsLabel.topAnchor.constraint(equalTo: stories.bottomAnchor, constant: 24).isActive = true
-        eventsLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24).isActive = true
-        events.topAnchor.constraint(equalTo: eventsLabel.bottomAnchor, constant: 24).isActive = true
-        events.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24).isActive = true
+        eventsLabel.topAnchor.constraint(equalTo: stories.bottomAnchor, constant: interitemSpacing).isActive = true
+        eventsLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: interitemSpacing).isActive = true
+        events.topAnchor.constraint(equalTo: eventsLabel.bottomAnchor, constant: interitemSpacing).isActive = true
+        events.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: interitemSpacing).isActive = true
         events.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
         
-        seriesLabel.topAnchor.constraint(equalTo: events.bottomAnchor, constant: 24).isActive = true
-        seriesLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24).isActive = true
-        series.topAnchor.constraint(equalTo: seriesLabel.bottomAnchor, constant: 24).isActive = true
-        series.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24).isActive = true
+        seriesLabel.topAnchor.constraint(equalTo: events.bottomAnchor, constant: interitemSpacing).isActive = true
+        seriesLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: interitemSpacing).isActive = true
+        series.topAnchor.constraint(equalTo: seriesLabel.bottomAnchor, constant: interitemSpacing).isActive = true
+        series.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: interitemSpacing).isActive = true
         series.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
         
         backButton.topAnchor.constraint(equalTo: series.bottomAnchor, constant: 48).isActive = true
-        backButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24).isActive = true
-        backButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -24).isActive = true
+        backButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: interitemSpacing).isActive = true
+        backButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: (-1)*interitemSpacing).isActive = true
     }
     
     private func configureSubviews() {
