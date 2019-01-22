@@ -207,47 +207,33 @@ class CharacterDetailViewController: UIViewController {
         nameLabel.text = character.name
         descriptionLabel.text = character.description
         
-        var comicCount = 0
-        for comic in character.comics {
-            let label = UILabel()
-            label.text = comic.name
-            comics.addArrangedSubview(label)
-            comicCount += 1
-            if comicCount == 3 {
-                break
+        for index in 0...2 {
+            if index + 1 < character.comics.count {
+                let label = UILabel()
+                let comic = character.comics[index]
+                label.text = comic.name
+                comics.addArrangedSubview(label)
             }
-        }
         
-        var storyCount = 0
-        for story in character.stories {
-            let label = UILabel()
-            label.text = story.name
-            stories.addArrangedSubview(label)
-            storyCount += 1
-            if storyCount == 3 {
-                break
+            if index + 1 < character.stories.count {
+                let label = UILabel()
+                let story = character.stories[index]
+                label.text = story.name
+                stories.addArrangedSubview(label)
             }
-        }
         
-        var eventCount = 0
-        for event in character.events {
-            let label = UILabel()
-            label.text = event.name
-            events.addArrangedSubview(label)
-            eventCount += 1
-            if eventCount == 3 {
-                break
+            if index + 1 < character.events.count {
+                let label = UILabel()
+                let event = character.events[index]
+                label.text = event.name
+                events.addArrangedSubview(label)
             }
-        }
-        
-        var seriesCount = 0
-        for seriesItem in character.series {
-            let label = UILabel()
-            label.text = seriesItem.name
-            series.addArrangedSubview(label)
-            seriesCount += 1
-            if seriesCount == 3 {
-                break
+            
+            if index + 1 < character.series.count {
+                let label = UILabel()
+                let seriesItem = character.series[index]
+                label.text = seriesItem.name
+                series.addArrangedSubview(label)
             }
         }
         
