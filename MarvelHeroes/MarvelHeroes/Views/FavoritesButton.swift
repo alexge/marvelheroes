@@ -10,7 +10,7 @@ import UIKit
 
 class FavoritesButton: UIButton {
     
-    var character: Character?
+    private var character: Character?
     
     override init(frame: CGRect) {
         super.init(frame: frame)

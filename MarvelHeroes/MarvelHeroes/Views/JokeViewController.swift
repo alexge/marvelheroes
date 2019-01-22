@@ -14,7 +14,7 @@ protocol JokeViewControllerDelegate: class {
 
 class JokeViewController: UIViewController {
     
-    var jokeLabel: UILabel = {
+    private var jokeLabel: UILabel = {
        let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -24,7 +24,7 @@ class JokeViewController: UIViewController {
         return label
     }()
     
-    var marvelLogo: UIImageView = {
+    private var marvelLogo: UIImageView = {
         let logo = UIImageView()
         logo.image = UIImage(named: "Marvel")
         logo.translatesAutoresizingMaskIntoConstraints = false

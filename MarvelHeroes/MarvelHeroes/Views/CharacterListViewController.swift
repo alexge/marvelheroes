@@ -18,17 +18,17 @@ protocol CharacterListViewControllerDelegate: class {
 
 class CharacterListViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView? {
+    @IBOutlet private weak var tableView: UITableView? {
         didSet {
             tableView?.delegate = self
             tableView?.dataSource = self
             tableView?.rowHeight = 50
         }
     }
-    @IBOutlet weak var searchField: UITextField?
-    @IBOutlet weak var searchButton: UIButton?
+    @IBOutlet private weak var searchField: UITextField?
+    @IBOutlet private weak var searchButton: UIButton?
     
-    var searchLoadingIndicator: UIActivityIndicatorView = {
+    private var searchLoadingIndicator: UIActivityIndicatorView = {
         let activity = UIActivityIndicatorView(style: .gray)
         activity.hidesWhenStopped = true
         activity.translatesAutoresizingMaskIntoConstraints = false
@@ -78,18 +78,18 @@ class CharacterListViewController: UIViewController {
 }
 
 extension CharacterListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.didSelectCharacter(characters[indexPath.row])
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
 extension CharacterListViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return characters.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterListCell") else { return UITableViewCell() }
         guard let listCell = cell as? CharacterListCell else { return cell }
         
@@ -99,7 +99,7 @@ extension CharacterListViewController: UITableViewDataSource {
         return listCell
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    internal func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.section == 0 && indexPath.row == characters.count - 1 {
             if moreResults {
                 tableView.tableFooterView?.isHidden = false
@@ -110,7 +110,7 @@ extension CharacterListViewController: UITableViewDataSource {
 }
 
 extension CharacterListViewController: CharacterListCellDelegate {
-    func favoritesButtonTapped(character: Character, indexPath: IndexPath) {
+    internal func favoritesButtonTapped(character: Character, indexPath: IndexPath) {
         delegate?.toggleFavorite(character: character)
         tableView?.reloadRows(at: [indexPath], with: .fade)
     }

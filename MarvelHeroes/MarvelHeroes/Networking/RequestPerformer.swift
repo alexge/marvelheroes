@@ -11,11 +11,11 @@ import CommonCrypto
 
 class RequestPerformer {
     
-    let baseURL: String = "https://gateway.marvel.com"
-    let charactersPath: String = "/v1/public/characters"
+    private let baseURL: String = "https://gateway.marvel.com"
+    private let charactersPath: String = "/v1/public/characters"
     
-    let publicKey = "f1a9b1c3346ee87c71f463a81ffbebfc"
-    let privateKey = "b45d57cc362cc6ed4fd9f45cf2d7754d0636c332"
+    private let publicKey = "f1a9b1c3346ee87c71f463a81ffbebfc"
+    private let privateKey = "b45d57cc362cc6ed4fd9f45cf2d7754d0636c332"
     
     func fetchCharacters(offset: Int, search: String? = nil, successHandler: @escaping (([Character]) -> Void)) {
         var urlComp = URLComponents(string: baseURL + charactersPath)!

@@ -14,9 +14,9 @@ protocol CharacterDetailViewControllerDelegate: class {
 
 class CharacterDetailViewController: UIViewController {
     
-    var character: Character
+    private let character: Character
     
-    var scrollView: UIScrollView = {
+    private var scrollView: UIScrollView = {
         let sv = UIScrollView()
         sv.translatesAutoresizingMaskIntoConstraints = false
         sv.isScrollEnabled = true
@@ -24,84 +24,84 @@ class CharacterDetailViewController: UIViewController {
         return sv
     }()
     
-    var containerView: UIView = {
+    private var containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    var favoritesButton = FavoritesButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
+    private var favoritesButton = FavoritesButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
     
-    var nameLabel: UILabel = {
+    private var nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    var descriptionLabel: UILabel = {
+    private var descriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         return label
     }()
     
-    var comicsLabel: UILabel = {
+    private var comicsLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Most Recent Comics"
         return label
     }()
     
-    var comics: UIStackView = {
+    private var comics: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
         return stack
     }()
     
-    var storiesLabel: UILabel = {
+    private var storiesLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Most Recent Stories"
         return label
     }()
     
-    var stories: UIStackView = {
+    private var stories: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
         return stack
     }()
     
-    var eventsLabel: UILabel = {
+    private var eventsLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Most Recent Events"
         return label
     }()
     
-    var events: UIStackView = {
+    private var events: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
         return stack
     }()
     
-    var seriesLabel: UILabel = {
+    private var seriesLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Most Recent Series"
         return label
     }()
     
-    var series: UIStackView = {
+    private var series: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
         return stack
     }()
     
-    var backButton: UIButton = {
+    private var backButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Back", for: .normal)

@@ -10,20 +10,20 @@ import UIKit
 
 class CharacterListController: NSObject {
     
-    let navController: UINavigationController
-    let listViewController: CharacterListViewController
+    private let navController: UINavigationController
+    private let listViewController: CharacterListViewController
 
-    let storyboard: UIStoryboard = UIStoryboard(name: "CharacterList", bundle: .main)
+    private let storyboard: UIStoryboard = UIStoryboard(name: "CharacterList", bundle: .main)
     
-    var isLoading: Bool = false
-    var offset: Int = 0
-    var moreResults: Bool = true {
+    private var isLoading: Bool = false
+    private var offset: Int = 0
+    private var moreResults: Bool = true {
         didSet {
             listViewController.moreResults = moreResults
         }
     }
     
-    var characters = [Character]() {
+    private var characters = [Character]() {
         didSet {
             listViewController.characters = characters
         }
@@ -70,19 +70,19 @@ class CharacterListController: NSObject {
 }
 
 extension CharacterListController: CharacterListViewControllerDelegate {
-    func didSelectCharacter(_ character: Character) {
+    internal func didSelectCharacter(_ character: Character) {
         let detailVC = CharacterDetailViewController(character: character)
         detailVC.transitioningDelegate = self
         detailVC.delegate = self
         listViewController.present(detailVC, animated: true)
     }
     
-    func didReachBottom() {
+    internal func didReachBottom() {
         guard !isLoading else { return }
         fetchCharacters(pageLoad: true)
     }
     
-    func toggleFavorite(character: Character) {
+    internal func toggleFavorite(character: Character) {
         guard let favoritesDictionary = NSMutableDictionary(contentsOfFile: Keys.favoritesPath)
             else {
                 return
@@ -97,13 +97,13 @@ extension CharacterListController: CharacterListViewControllerDelegate {
         favoritesDictionary.write(toFile: Keys.favoritesPath, atomically: true)
     }
     
-    func didSearch(for search: String) {
+    internal func didSearch(for search: String) {
         fetchCharacters(search: search) { [weak self] in
             self?.listViewController.title = "Search: \(search)"
         }
     }
     
-    func didClearSearch() {
+    internal func didClearSearch() {
         fetchCharacters() { [weak self] in
             self?.listViewController.title = "Heroes"
         }
@@ -111,7 +111,7 @@ extension CharacterListController: CharacterListViewControllerDelegate {
 }
 
 extension CharacterListController: UIViewControllerTransitioningDelegate {
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    internal func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if let _ = presented as? CharacterDetailViewController {
             return CharacterAnimationController(type: .fadeIn)
         } else {
@@ -119,7 +119,7 @@ extension CharacterListController: UIViewControllerTransitioningDelegate {
         }
     }
     
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    internal func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if let _ = dismissed as? CharacterDetailViewController {
             return CharacterAnimationController(type: .fadeOut)
         } else {
@@ -129,7 +129,7 @@ extension CharacterListController: UIViewControllerTransitioningDelegate {
 }
 
 extension CharacterListController: CharacterDetailViewControllerDelegate {
-    func favoriteButtonTapped(character: Character) {
+    internal func favoriteButtonTapped(character: Character) {
         toggleFavorite(character: character)
     }
 }

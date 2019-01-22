@@ -13,18 +13,18 @@ enum CharacterAnimationType {
 }
 
 class CharacterAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
-    var type: CharacterAnimationType
+    private var type: CharacterAnimationType
     
     init(type: CharacterAnimationType) {
         self.type = type
         super.init()
     }
     
-    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+    internal func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 1
     }
     
-    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+    internal func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         guard let fromVC = transitionContext.viewController(forKey: .from),
             let toVC = transitionContext.viewController(forKey: .to)
             else { return }

@@ -15,15 +15,15 @@ protocol CharacterListCellDelegate: class {
 class CharacterListCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel?
     
-    var favoritesButton = FavoritesButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
+    private var favoritesButton = FavoritesButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
     
-    var character: Character? {
+    private var character: Character? {
         didSet {
             guard let character = character else { return }
             favoritesButton.bind(character: character)
         }
     }
-    var indexPath: IndexPath?
+    private var indexPath: IndexPath?
     
     weak var delegate: CharacterListCellDelegate?
     
@@ -50,7 +50,7 @@ class CharacterListCell: UITableViewCell {
         nameLabel?.text = character.name
     }
     
-    @objc func buttonTapped() {
+    @objc private func buttonTapped() {
         guard let character = self.character, let indexPath = self.indexPath else { return }
         delegate?.favoritesButtonTapped(character: character, indexPath: indexPath)
     }
