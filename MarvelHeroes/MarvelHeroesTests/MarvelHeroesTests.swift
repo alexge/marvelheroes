@@ -30,12 +30,11 @@ class ModelTests: XCTestCase {
     }
 
     func testPlistPathExists() {
-        XCTAssertNotNil(Bundle.main.path(forResource: "Favorites", ofType: "plist"))
+        XCTAssertTrue(FileManager.default.fileExists(atPath: Keys.favoritesPath))
     }
     
     func testPlistDictionaryExists() {
-        let favoritesPath = Bundle.main.path(forResource: "Favorites", ofType: "plist")!
-        XCTAssertNotNil(NSMutableDictionary(contentsOfFile: favoritesPath))
+        XCTAssertNotNil(NSMutableDictionary(contentsOfFile: Keys.favoritesPath))
     }
     
     func testCharacterIsFavorite() {
