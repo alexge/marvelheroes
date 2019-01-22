@@ -83,8 +83,7 @@ extension CharacterListController: CharacterListViewControllerDelegate {
     }
     
     func toggleFavorite(character: Character) {
-        guard let favoritesPath = Bundle.main.path(forResource: "Favorites", ofType: "plist"),
-            let favoritesDictionary = NSMutableDictionary(contentsOfFile: favoritesPath)
+        guard let favoritesDictionary = NSMutableDictionary(contentsOfFile: Keys.favoritesPath)
             else {
                 return
         }
@@ -95,7 +94,7 @@ extension CharacterListController: CharacterListViewControllerDelegate {
             favoritesDictionary["\(character.id)"] = character.name
         }
         
-        favoritesDictionary.write(toFile: favoritesPath, atomically: true)
+        favoritesDictionary.write(toFile: Keys.favoritesPath, atomically: true)
     }
     
     func didSearch(for search: String) {

@@ -15,24 +15,18 @@ class ModelTests: XCTestCase {
     let character2 = Character(id: 2, name: "Brian", description: "the smallest", comics: [], stories: [], events: [], series: [])
 
     override func setUp() {
-        guard let favoritesPath = Bundle.main.path(forResource: "Favorites", ofType: "plist"),
-            let favoritesDictionary = NSMutableDictionary(contentsOfFile: favoritesPath)
-            else {
-                return
-        }
-        favoritesDictionary["1"] = "ALEX"
+        let favoritesDictionary = NSDictionary(dictionary: ["1":"ALEX"])
         
-        favoritesDictionary.write(toFile: favoritesPath, atomically: true)
+        favoritesDictionary.write(toFile: Keys.favoritesPath, atomically: true)
     }
 
     override func tearDown() {
-        guard let favoritesPath = Bundle.main.path(forResource: "Favorites", ofType: "plist"),
-            let favoritesDictionary = NSMutableDictionary(contentsOfFile: favoritesPath)
+        guard let favoritesDictionary = NSMutableDictionary(contentsOfFile: Keys.favoritesPath)
             else {
                 return
         }
         favoritesDictionary.removeObject(forKey: "1")
-        favoritesDictionary.write(toFile: favoritesPath, atomically: true)
+        favoritesDictionary.write(toFile: Keys.favoritesPath, atomically: true)
     }
 
     func testPlistPathExists() {
